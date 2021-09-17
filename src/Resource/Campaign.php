@@ -10,4 +10,18 @@ class Campaign extends Base {
         return 'campaigns';
     }
     
+	public function start($uid)
+    {
+        return $this->makeRequest($uid . '/start', 'POST');
+    }
+	
+	public function pause($uid)
+    {
+        return $this->makeRequest($uid . '/pause', 'POST');
+    }
+	
+	public function resume($uid)
+    {
+        return $this->makeRequest($uid . '/resume', 'POST');
+    }
 }

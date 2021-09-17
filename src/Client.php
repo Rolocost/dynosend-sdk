@@ -6,8 +6,7 @@ use Dynosend\Resource\Base;
 use Dynosend\Resource\Campaign;
 use Dynosend\Resource\MailList;
 use Dynosend\Resource\Subscriber;
-use Dynosend\Resource\Notification;
-use Dynosend\Resource\File;
+
 
 class Client {
     private $token;
@@ -39,11 +38,6 @@ class Client {
 
     public function subscriber() {
         return new Subscriber([], $this);
-    }
-
-
-    public function notification() {
-        return new Notification([], $this);
     }
 
     public function loginToken() {
