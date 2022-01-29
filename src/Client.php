@@ -4,17 +4,18 @@ namespace Dynosend;
 
 use Dynosend\Resource\Base;
 use Dynosend\Resource\Campaign;
-use Dynosend\Resource\MailList;
+use Dynosend\Resource\Audience;
 use Dynosend\Resource\Subscriber;
+use Dynosend\Resource\Event;
 
 
 class Client {
     private $token;
-    private $uri;
+    public $uri = "https://app.dynosend.com";
 
-    public function __construct($uri, $token)
+    public function __construct($token)
     {
-        $this->uri = $uri;
+
         $this->token = $token;
     }
 
@@ -32,12 +33,16 @@ class Client {
         return new Campaign([], $this);
     }
 
-    public function list() {
-        return new MailList([], $this);
+    public function audience() {
+        return new Audience([], $this);
     }
 
     public function subscriber() {
         return new Subscriber([], $this);
+    }
+
+    public function event() {
+        return new Event([], $this);
     }
 
     public function loginToken() {

@@ -4,7 +4,7 @@ namespace Dynosend\Resource;
 
 use Dynosend\Resource\Base;
 
-class MailList extends Base {
+class Audience extends Base {
     public function getSubject()
     {
         return 'lists';
