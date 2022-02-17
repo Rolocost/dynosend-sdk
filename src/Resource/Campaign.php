@@ -1,8 +1,8 @@
 <?php
 
-namespace Dynosend\Resource;
+namespace DynosendSDK\Resource;
 
-use Dynosend\Resource\Base;
+use DynosendSDK\Resource\Base;
 
 class Campaign extends Base {
     public function getSubject()
@@ -24,4 +24,6 @@ class Campaign extends Base {
     {
         return $this->makeRequest($uid . '/resume', 'POST');
     }
+
+
 }

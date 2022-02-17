@@ -1,9 +1,8 @@
 {
-    "name": "rolocost/dynosend-sdk",
-    "description": "PHP SDK for Dynosend platform",
+    "name": "dynosend/dynosendphp",
+    "description": "PHP API wrapper for Dynosend marketing automation platform",
     "require": {
-        "monolog/monolog": "1.0.2",
-        "guzzlehttp/guzzle": "^1.4"
+        "guzzlehttp/guzzle": "6.3"
     },
     "autoload": {
         "psr-4": {"DynosendSDK\\": "src/"}

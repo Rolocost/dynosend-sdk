@@ -1,17 +1,17 @@
 <?php
 
-namespace Dynosend;
+namespace DynosendSDK;
 
-use Dynosend\Resource\Base;
-use Dynosend\Resource\Campaign;
-use Dynosend\Resource\Audience;
-use Dynosend\Resource\Subscriber;
-use Dynosend\Resource\Event;
+use DynosendSDK\Resource\Base;
+use DynosendSDK\Resource\Campaign;
+use DynosendSDK\Resource\Audience;
+use DynosendSDK\Resource\Contact;
+use DynosendSDK\Resource\Event;
 
 
 class Client {
     private $token;
-    public $uri = "https://app.dynosend.com";
+    public $uri = "https://api.dynosend.com/api/v1";
 
     public function __construct($token)
     {
@@ -37,8 +37,8 @@ class Client {
         return new Audience([], $this);
     }
 
-    public function subscriber() {
-        return new Subscriber([], $this);
+    public function contact() {
+        return new Contact([], $this);
     }
 
     public function event() {

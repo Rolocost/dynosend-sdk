@@ -1,16 +1,16 @@
 <?php
 
-namespace Dynosend\Resource;
+namespace DynosendSDK\Resource;
 
-use Dynosend\Resource\Base;
+use DynosendSDK\Resource\Base;
 
 class Event extends Base {
     public function getSubject()
     {
-        return 'events';
+        return '';
     }
 
     public function sendevent($params) {
-        return $this->makeRequest('/' . 'events', 'POST', $params);
+        return $this->makeRequest('events', 'POST', $params);
     }
 }

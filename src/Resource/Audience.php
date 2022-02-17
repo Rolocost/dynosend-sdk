@@ -1,16 +1,20 @@
 <?php
 
-namespace Dynosend\Resource;
+namespace DynosendSDK\Resource;
 
-use Dynosend\Resource\Base;
+use DynosendSDK\Resource\Base;
 
 class Audience extends Base {
     public function getSubject()
     {
-        return 'lists';
+        return 'audiences';
     }
 
     public function addCustomField($uid, $params) {
         return $this->makeRequest($uid . '/' . 'add-field', 'POST', $params);
+    }
+	
+	public function create($params) {
+        return $this->makeRequest('', 'POST', $params);
     }
 }

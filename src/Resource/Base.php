@@ -1,6 +1,6 @@
 <?php
 
-namespace Dynosend\Resource;
+namespace DynosendSDK\Resource;
 
 class Base {
     private $client;
@@ -26,8 +26,8 @@ class Base {
 		return $this->makeRequest($uid, 'GET');
     }
     
-    public function update($uid, $params) {
-		return $this->makeRequest($uid, 'PATCH', $params);
+    public function update($email, $params) {
+		return $this->makeRequest($email, 'PATCH', $params);
     }
     
     public function delete($uid) {
