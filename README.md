@@ -2,7 +2,9 @@
 
 PHP client for Dynosend api
 
-[API Documentation](https://developers.dynosend.com/)
+This is just an example, for more methods please check the [API Documentation](https://developers.dynosend.com/)
+
+
 
 The API client can be installed via [Composer](https://github.com/composer/composer).
 
