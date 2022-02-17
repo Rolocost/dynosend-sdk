@@ -14,7 +14,5 @@ class Audience extends Base {
         return $this->makeRequest($uid . '/' . 'add-field', 'POST', $params);
     }
 	
-	public function create($params) {
-        return $this->makeRequest('', 'POST', $params);
-    }
+
 }

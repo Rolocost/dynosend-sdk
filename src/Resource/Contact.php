@@ -25,6 +25,11 @@ class Contact extends Base {
         return $this->makeRequest($email, 'PATCH', $params);
     }
 	
+	public function addtag($params)
+    {
+        return $this->makeRequest('addtag', 'PATCH', $params);
+    }
+	
 	public function create($params)
     {
         return $this->makeRequest('','POST', $params);
