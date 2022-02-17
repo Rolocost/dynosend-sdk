@@ -70,14 +70,14 @@ try {
 
 // Get audience
 try {
-    $client->audience()->find('LIST_UID'); 
+    $client->audience()->find('5fc9e55410e10'); 
 } catch (\GuzzleHttp\Exception\GuzzleException $e) {
     // Handle the error
 }
 
 // Create custom field
 try {
-    $client->audience()->addCustomField('LIST_UID', [
+    $client->audience()->addCustomField('5fc9e55410e10', [
         'type' => 'text',
         'label' => 'Plan name',
         'tag' => 'PLAN',
@@ -89,59 +89,73 @@ try {
 
 ```
 
+#### Contacts
+
+```php
+<?php
+// Get all contacts in a given audience
+try {
+    $client->contact()->all([
+        'list_uid' => '5fc9e55410e10',
+        'per_page' => 20,
+        'page' => 1
+    ]); 
+} catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    // Handle the error
+}
+
+// Create a contact
+try {
+    $client->contact()->create([
+        'EMAIL' => 'john@example.com',
+        'list_uid' => '5fc9e55410e10',
+        'tag' => 'tag, another tag';
+        'OTHER_FIELD' => ...
+    ]); 
+} catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    // Handle the error
+}
+
+// Update contact's data fields
+try{
+    $client->contact()->update('john@example.com',[
+        'EMAIL' => 'john@example.com',
+        'list_uid' => '5fc9e55410e10',
+        'tag' => 'new tags',
+        'OTHER_FIELDS' => ...
+    ]); 
+} catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    // Handle the error
+}
+
+// Tag contact
+try{
+    $client->contact()->addtag([
+        'email' => 'john@example.com',
+        'list_uid' => '5fc9e55410e10',
+        'tag' => 'your added tags'
+    ]); 
+} catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    // Handle the error
+}
+```
+
 #### Events
-
 ```php
 <?php
-// Add customer event
+// Send an event
 try {
-    $client->customers->event(
-        [
-            'id' => 1,
-            'name' => 'test-event',
-            'data' => [
-                'event-metadata-1' => 'test',
-                'event-metadata-2' => 'test-2'
-            ]
-        ]
-    );
-} catch (\GuzzleHttp\Exception\GuzzleException $e) {
-    // Handle the error
-}
-
-// Add anonymous event
-try {
-    $client->events->anonymous(
-        [
-            'name' => 'invite-friend',
-            'data' => [
-                'recipient' => 'invitee@example.com'
-            ]
-        ]
-    );
+    $client->contact()->sendevent([
+        'event_name' => 'account_created',
+        'email' => 'john@example.com',
+        'list_uid' => '5fc9e55410e10'
+    ]); 
 } catch (\GuzzleHttp\Exception\GuzzleException $e) {
     // Handle the error
 }
 ```
 
-Anonymous event [example](http://customer.io/docs/invitation-emails.html) usage.
 
-#### Segments
-```php
-<?php
-// Get segment data
-try {
-    $client->segments->get(
-        [
-            'id' => 1
-        ]
-    );
-} catch (\GuzzleHttp\Exception\GuzzleException $e) {
-    // Handle the error
-}
-```
-
-Check for other available methods [here](https://customer.io/docs/api/#apibeta-apisegmentssegments_list)
 
 #### PageView
 
