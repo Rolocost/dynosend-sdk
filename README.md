@@ -30,83 +30,63 @@ Configure your access credentials when creating a client:
 ```php
 <?php
 
-
 $client = new \DynosendSDK\Client('API_TOKEN');
-
 // API token can be found in your account's API settings
 
 ?>
 ```
 
-Change region to EU
-
-```php
-<?php
-use Customerio\Client;
-
-$client = new Client('YOUR_API_KEY', 'YOUR_SITE_ID', ['region' => 'eu']);
-
-?>
-```
-
-### Local Testing
-
-Run `phpunit` from the project root to start all tests.
 
 ### Examples
 
-#### Customers
+#### Audiences (contact lists)
 
 ```php
 <?php
-// Create customer
+// Create audience
 try {
-    $client->customers->add(
-        [
-            'id' => 1,
-            'email' => 'user@example.com',
-            'plan' => 'free',
-            'created_at' => time()
-        ]
-    );
+    $client->audience()->create([
+        'name' => 'Audience 1',
+        'from_email' => 'support@abccorp.com',
+        'from_name' => 'Customer Support',
+        'default_subject' => 'An Awesome Subject',
+        'contact[state]' => 'CA',
+        'contact[company]' => 'ABC Corp',
+        'contact[address_1]' => '81 Willow Rd',
+        'contact[address_2]' => '',
+        'contact[city]' => 'Salinas',
+        'contact[zip]' => '93905',
+        'contact[phone]' => '+18003334444',
+        'contact[country_id]' => '231',
+        'contact[email]' => 'contact@abccorp.com',
+        'contact[url]' => 'https://abccorp.com/',
+        'subscribe_confirmation' => 0,
+        'send_welcome_email' => 1,
+        'unsubscribe_notification' => 1,
+    ]); 
 } catch (\GuzzleHttp\Exception\GuzzleException $e) {
     // Handle the error
 }
 
-// Get customer
+// Get audience
 try {
-    $client->customers->get(
-        [
-            'email' => 'user@example.com',        
-        ]
-    );
+    $client->audience()->find('LIST_UID'); 
 } catch (\GuzzleHttp\Exception\GuzzleException $e) {
     // Handle the error
 }
 
-// Update customer
+// Create custom field
 try {
-    $client->customers->update(
-        [
-            'id' => 1,
-            'email' => 'user@example.com',
-            'plan' => 'premium'
-        ]
-    );
+    $client->audience()->addCustomField('LIST_UID', [
+        'type' => 'text',
+        'label' => 'Plan name',
+        'tag' => 'PLAN',
+        'default_value' => 'Free trial'
+    ]);
 } catch (\GuzzleHttp\Exception\GuzzleException $e) {
     // Handle the error   
 }
 
-// Delete customer
-try {
-    $client->customers->delete(
-        [
-            'id' => 1,
-        ]
-    );
-} catch (\GuzzleHttp\Exception\GuzzleException $e) {
-    // Handle the error   
-}
 ```
 
 #### Events
