@@ -8,7 +8,7 @@ The API client can be installed via [Composer](https://github.com/composer/compo
 
 Run this command:
 
-```json
+```
 composer require rolocost/dynosendphp
 ```
 
