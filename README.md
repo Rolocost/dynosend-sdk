@@ -45,32 +45,8 @@ $client = new \DynosendSDK\Client('API_TOKEN');
 
 ```php
 <?php
-// Create audience
-try {
-    $client->audience()->create([
-        'name' => 'Audience 1',
-        'from_email' => 'support@abccorp.com',
-        'from_name' => 'Customer Support',
-        'default_subject' => 'An Awesome Subject',
-        'contact[state]' => 'CA',
-        'contact[company]' => 'ABC Corp',
-        'contact[address_1]' => '81 Willow Rd',
-        'contact[address_2]' => '',
-        'contact[city]' => 'Salinas',
-        'contact[zip]' => '93905',
-        'contact[phone]' => '+18003334444',
-        'contact[country_id]' => '231',
-        'contact[email]' => 'contact@abccorp.com',
-        'contact[url]' => 'https://abccorp.com/',
-        'subscribe_confirmation' => 0,
-        'send_welcome_email' => 1,
-        'unsubscribe_notification' => 1,
-    ]); 
-} catch (\GuzzleHttp\Exception\GuzzleException $e) {
-    // Handle the error
-}
 
-// Get audience
+// Get an audience
 try {
     $client->audience()->find('5fc9e55410e10'); 
 } catch (\GuzzleHttp\Exception\GuzzleException $e) {
