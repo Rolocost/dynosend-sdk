@@ -2,7 +2,7 @@
 
 PHP client for Dynosend api
 
-This is just an example, for more methods please check the [API Documentation](https://developers.dynosend.com/)
+This is just an example, for the rest of the methods please check the [API Documentation](https://developers.dynosend.com/)
 
 
 
@@ -158,26 +158,5 @@ try {
 ```
 
 
-
-#### PageView
-
-```php
-<?php
-// Add page view
-try {
-    $result = $client->page->view(
-        [
-            'id' => 1,
-            'url' => 'http://example.com/login',
-            'data' => [
-                'referrer' => 'http://example.com'
-            ]
-        ]
-    );
-} catch (\GuzzleHttp\Exception\GuzzleException $e) {
-    // Handle the error
-}
-```
-
-#### Check the [API Documentation](https://developers.dynosend.com/) for more methods
+#### Check the [API Documentation](https://developers.dynosend.com/) for the rest of the methods.
 
