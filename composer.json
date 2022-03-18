@@ -1,6 +1,6 @@
 {
     "name": "rolocost/dynosendphp",
-    "description": "PHP API wrapper for Dynosend marketing automation platform",
+    "description": "PHP API wrapper for Dynosend customer engagement platform",
     "require": {
         "guzzlehttp/guzzle": "^6.3"
     },
