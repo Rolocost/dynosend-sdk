@@ -10,19 +10,31 @@ class Campaign extends Base {
         return 'campaigns';
     }
     
+    public function getAll() {
+        return $this->makeRequest(null, 'GET', null, null);
+    }
+
+    public function find($uid) {
+        $params = ["campaign_uid" => $uid];
+        return $this->makeRequest(null, 'GET', $params, null);
+    }
+
 	public function start($uid)
     {
-        return $this->makeRequest($uid . '/start', 'POST');
+        $params = ["campaign_uid" => $uid];
+        return $this->makeRequest('start' ,'POST', $params, null);
     }
 	
 	public function pause($uid)
     {
-        return $this->makeRequest($uid . '/pause', 'POST');
+        $params = ["campaign_uid" => $uid];
+        return $this->makeRequest('pause' ,'POST', $params, null);
     }
 	
 	public function resume($uid)
     {
-        return $this->makeRequest($uid . '/resume', 'POST');
+        $params = ["campaign_uid" => $uid];
+        return $this->makeRequest('resume' ,'POST', $params, null);
     }
 
 

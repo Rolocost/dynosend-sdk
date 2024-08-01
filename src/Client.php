@@ -8,11 +8,12 @@ use DynosendSDK\Resource\Audience;
 use DynosendSDK\Resource\Contact;
 use DynosendSDK\Resource\Event;
 use DynosendSDK\Resource\Transactional;
+use DynosendSDK\Resource\Blacklist;
 
 
 class Client {
     private $token;
-    public $uri = "https://api.dynosend.com/api/v1";
+    public $uri = "https://api.dynosend.com/api/v2";
 
     public function __construct($token)
     {
@@ -49,9 +50,8 @@ class Client {
 	public function transactional() {
         return new Transactional([], $this);
     }
-
-    public function loginToken() {
-        $base = new Base([], $this);
-        return $base->makeRequest('login-token', 'POST');
+	
+	public function blacklist() {
+        return new Blacklist([], $this);
     }
 }

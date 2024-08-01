@@ -10,45 +10,48 @@ class Contact extends Base {
         return 'contacts';
     }
 
-    public function findInAudiences($email)
+    public function getAll($params)
     {
-        return $this->makeRequest('email/' . $email, 'GET');
+        return $this->makeRequest(null, 'GET', $params, null);
     }
 	
-	public function identify($email, $params)
+    public function create($params)
     {
-        return $this->makeRequest($email, 'GET', $params);
+        return $this->makeRequest( null,'POST', $params, null);
+    }
+
+	public function identify($params)
+    {
+        return $this->makeRequest( null,'GET', $params, null);
     }
 	
-	public function update($email, $params)
+    public function findDuplicates($params)
     {
-        return $this->makeRequest($email, 'PATCH', $params);
+        return $this->makeRequest('duplicate' ,'GET', $params, null);
     }
-	
+
+    public function update($params)
+    {
+        return $this->makeRequest('update' ,'PATCH', $params, null);
+    }
+
 	public function addtag($params)
     {
-        return $this->makeRequest('addtag', 'PATCH', $params);
-    }
-	
-	public function create($params)
-    {
-        return $this->makeRequest('','POST', $params);
+        return $this->makeRequest('addtag' ,'PATCH', $params, null);
     }
 
-    public function subscribe($email, $params)
+	public function subscribe($params)
     {
-        return $this->makeRequest($email . '/subscribe', 'PATCH', $params);
-    }
-
-    public function unsubscribe($email, $params)
-    {
-        return $this->makeRequest($email . '/unsubscribe', 'PATCH', $params);
+        return $this->makeRequest('subscribe' ,'PATCH', $params, null);
     }
 	
-	public function deletecontact($email, $params)
+	public function unsubscribe($params)
     {
-        return $this->makeRequest($email, 'DELETE', $params);
+        return $this->makeRequest('unsubscribe' ,'PATCH', $params, null);
     }
-	
 
+	public function deletecontact($params)
+    {
+        return $this->makeRequest(null ,'DELETE', $params, null);
+    }
 }

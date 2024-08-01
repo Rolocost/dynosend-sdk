@@ -14,26 +14,6 @@ class Base {
         $this->client = $client;
     }
 
-    public function all($params = []) {
-		return $this->makeRequest('', 'GET', $params);
-	}
-
-    public function create($params) {
-		return $this->makeRequest('', 'POST', $params);
-    }
-    
-    public function find($uid) {
-		return $this->makeRequest($uid, 'GET');
-    }
-    
-    public function update($email, $params) {
-		return $this->makeRequest($email, 'PATCH', $params);
-    }
-    
-    public function delete($uid) {
-		return $this->makeRequest($uid, 'DELETE');
-	}
-
 	public function makeRequest($action = '', $method = 'POST', $params = [], $headers = []) {
         $uri = $this->client->getUri();
         
@@ -47,13 +27,14 @@ class Base {
         $client = new \GuzzleHttp\Client(['http_errors' => true]);
         $headers = array_merge([
             'Content-Type' => 'application/json',
+            'Authorization' => "Bearer " . $this->client->getToken(),
         ], $headers);
         try {
             $response = $client->request($method, $uri, [
                 'headers' => $headers,
-                'body' => json_encode(array_merge(['api_token' => $this->client->getToken()], $params)),
+                'body' => json_encode($params),
             ]);
-        } catch (\Exception $e) {
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
             if ($e->hasResponse()) {
 				$statusCode = $e->getResponse()->getStatusCode();
 				$responseBody = json_decode($e->getResponse()->getBody(), true);
@@ -65,8 +46,8 @@ class Base {
 			} else {
 				return [
 					'error' => true,
-					'error_code' => $statusCode,
-					'message' => json_encode($responseBody),
+					'error_code' => $e->getCode(),
+					'message' => 'An error occurred without a response',
 				];
 			}
         }
